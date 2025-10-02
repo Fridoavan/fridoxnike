@@ -1,102 +1,472 @@
-import Image from "next/image";
+"use client";
+
+import React, { useRef } from "react";
+import { Search, Heart, ShoppingBag } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleWatch = () => {
+    const video = videoRef.current;
+    if (video) {
+      // Fullscreen support
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if ((video as any).webkitRequestFullscreen) {
+        (video as any).webkitRequestFullscreen();
+      } else if ((video as any).msRequestFullscreen) {
+        (video as any).msRequestFullscreen();
+      }
+
+      // Play otomatis
+      video.play();
+    }
+  };
+
+  return (
+    <div className="font-sans text-gray-900">
+      {/* Logo */}
+      <header className="flex flex-col md:flex-row justify-between items-center px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-50">
+        <div className="flex justify-center w-full md:w-auto mb-4 md:mb-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg"
+            alt="Nike Logo"
+            className="h-6"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Navbar */}
+        <nav className="flex justify-center space-x-6 font-medium w-full md:w-auto relative">
+          {/* New & Featured */}
+          <div className="group relative">
+            <a href="#" className="hover:text-gray-600">
+              New & Featured
+            </a>
+            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
+              <div className="grid grid-cols-4 gap-6">
+                <div>
+                  <h3 className="font-semibold mb-3">Featured</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="hover:text-black cursor-pointer">
+                      New Arrivals
+                    </li>
+                    <li className="hover:text-black cursor-pointer">
+                      Bestsellers
+                    </li>
+                    <li className="hover:text-black cursor-pointer">
+                      SNKRS Launch
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Trending</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="hover:text-black cursor-pointer">
+                      Air Force 1
+                    </li>
+                    <li className="hover:text-black cursor-pointer">
+                      Air Jordan
+                    </li>
+                    <li className="hover:text-black cursor-pointer">Dunk</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Shop by Sport</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="hover:text-black cursor-pointer">Running</li>
+                    <li className="hover:text-black cursor-pointer">
+                      Basketball
+                    </li>
+                    <li className="hover:text-black cursor-pointer">
+                      Football
+                    </li>
+                  </ul>
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Men */}
+          <div className="group relative">
+            <a href="#" className="hover:text-gray-600">
+              Men
+            </a>
+            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
+              <div className="grid grid-cols-4 gap-6">
+                <div>
+                  <h3 className="font-semibold mb-3">Shoes</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>All Shoes</li>
+                    <li>Lifestyle</li>
+                    <li>Running</li>
+                    <li>Basketball</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Clothing</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>T-Shirts</li>
+                    <li>Hoodies</li>
+                    <li>Shorts</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Shop by Sport</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Football</li>
+                    <li>Tennis</li>
+                    <li>Golf</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Women */}
+          <div className="group relative">
+            <a href="#" className="hover:text-gray-600">
+              Women
+            </a>
+            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
+              <div className="grid grid-cols-4 gap-6">
+                <div>
+                  <h3 className="font-semibold mb-3">Featured</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>New Arrivals</li>
+                    <li>Bestsellers</li>
+                    <li>Back to School</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Clothing</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Leggings</li>
+                    <li>Sports Bras</li>
+                    <li>Jackets</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Shoes</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Lifestyle</li>
+                    <li>Running</li>
+                    <li>Training</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Kids */}
+          <div className="group relative">
+            <a href="#" className="hover:text-gray-600">
+              Kids
+            </a>
+            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
+              <div className="grid grid-cols-4 gap-6">
+                <div>
+                  <h3 className="font-semibold mb-3">Featured</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>New Arrivals</li>
+                    <li>Back to School</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Kids By Age</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Older Kids (7 - 14)</li>
+                    <li>Younger Kids (4 - 7)</li>
+                    <li>Toddlers (0 - 4)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Shop by Sport</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Football</li>
+                    <li>Basketball</li>
+                    <li>Running</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sale */}
+          <div className="group relative">
+            <a href="#" className="hover:text-gray-600">
+              Sale
+            </a>
+            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
+              <div className="grid grid-cols-4 gap-6">
+                <div>
+                  <h3 className="font-semibold mb-3">Shop Deals</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Men’s Sale</li>
+                    <li>Women’s Sale</li>
+                    <li>Kids’ Sale</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Categories</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Shoes</li>
+                    <li>Clothing</li>
+                    <li>Accessories</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-3">Special Offers</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>Extra 20% Off</li>
+                    <li>Clearance</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* SNKRS */}
+          <a href="#" className="hover:text-gray-600">
+            SNKRS
+          </a>
+        </nav>
+
+        {/* Icons */}
+        <div className="flex items-center space-x-4 mt-4 md:mt-0">
+          <Search className="w-5 h-5 cursor-pointer" />
+          <Heart className="w-5 h-5 cursor-pointer" />
+          <ShoppingBag className="w-5 h-5 cursor-pointer" />
+        </div>
+      </header>
+
+      {/* Video Slider Section */}
+      <section className="w-full h-screen relative">
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          autoplay={{ delay: 5000 }}
+          pagination={{ clickable: true }}
+          loop={true}
+          className="w-full h-full"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          {/* Video 1 */}
+          <SwiperSlide>
+            <div className="relative w-full h-screen">
+              <video
+                className="w-full h-full object-cover"
+                src="/LOLOLOLO.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+              <div className="absolute inset-0 bg-black/30"></div>
+              {/* Teks di tengah agak bawah */}
+              <div className="absolute bottom-24 left-1/2 -translate-x-1/2 text-center text-white px-4">
+                <h1 className="text-5xl md:text-6xl font-extrabold uppercase">
+                  VOMERO PREMIUM
+                </h1>
+                <p className="text-lg mt-4 max-w-xl mx-auto">
+                  Experience a zero gravity running sensation
+                </p>
+                <button className="mt-6 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200">
+                  Shop
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          {/* Video 2 */}
+          <SwiperSlide>
+            <div className="relative w-full h-screen">
+              <video
+                className="w-full h-full object-cover"
+                src="/tenisnike.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+              />
+              <div className="absolute inset-0 bg-black/30"></div>
+              {/* Teks di tengah agak bawah */}
+              <div className="absolute bottom-24 left-1/2 -translate-x-1/2 text-center text-white px-4">
+                <h1 className="text-5xl md:text-6xl font-extrabold uppercase">
+                  JUST DO IT
+                </h1>
+                <p className="text-lg mt-4 max-w-xl mx-auto">
+                  Greatness Favors The Bold
+                </p>
+                <div className="flex justify-center gap-4 mt-6">
+                  <button className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200">
+                    Watch
+                  </button>
+                  <button className="bg-transparent border border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black">
+                    Gear Up
+                  </button>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </section>
+
+      {/* Shop by Sport */}
+      <section className="px-6 py-12">
+        <h2 className="text-3xl font-bold mb-6">Shop by Sport</h2>
+        <div className="flex space-x-6 overflow-x-auto scrollbar-hide">
+          {[
+            { name: "Basketball", img: "/nikebasket.jpeg" },
+            { name: "Football", img: "/nikefootbal.jpeg" },
+            { name: "Running", img: "/nikerunning.jpeg" },
+            { name: "Tennis", img: "/niketenis.jpeg" },
+            { name: "Golf", img: "/nikegolf.jpeg" },
+            { name: "Skateboarding", img: "/nikeskateboard.jpeg" },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 w-[300px] overflow-hidden group"
+            >
+              <img
+                src={item.img}
+                alt={item.name}
+                className="w-full h-[500px] object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+              />
+              <p className="mt-3 text-center font-semibold text-lg">
+                {item.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured */}
+      <section className="px-6 py-12">
+        <h2 className="text-2xl font-bold mb-6">Featured</h2>
+        <div className="grid md:grid-cols-2 gap-0">
+          {[
+            {
+              title: "Built to Move Different",
+              subtitle: "",
+              img: "/mafianike.jpeg",
+            },
+            {
+              title: "Coming Soon: Shox Z",
+              subtitle: "Not Here to be liked",
+              img: "/hitamputihshoes.jpeg",
+            },
+            {
+              title: "Air Jordan: Dusty Rose",
+              subtitle: "Never Been Done Is What We Do",
+              img: "/pinkshoes.jpeg",
+            },
+            {
+              title: "30 Sep - 02 Oct",
+              subtitle: "3 Days of Drops",
+              img: "/trisepatu.jpeg",
+            },
+          ].map((item, idx) => (
+            <div key={idx} className="relative">
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-full h-[500px] object-cover"
+              />
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-xl font-bold">{item.title}</h3>
+                {item.subtitle && <p className="text-sm">{item.subtitle}</p>}
+                <button className="mt-2 bg-white text-black px-4 py-1 rounded-full hover:bg-gray-200">
+                  Shop
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Shop by Icons */}
+      <section className="px-6 py-12">
+        <h2 className="text-2xl font-bold mb-6">Shop by Icons</h2>
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          autoplay={{ delay: 3000 }}
+          pagination={{ clickable: true }}
+          loop={true}
+          spaceBetween={20}
+          slidesPerView={2}
+          breakpoints={{
+            640: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
+          className="pb-10"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          {[
+            { name: "Air Jordan 1", img: "/aj1.jpeg" },
+            { name: "Air Force 1", img: "/af1.jpeg" },
+            { name: "V2K", img: "/p600.jpeg" },
+            { name: "Metcon", img: "/metcon.jpeg" },
+            { name: "Air Max Dn Roam", img: "/airmaxdnroam.jpeg" },
+            { name: "Blazer", img: "/blazer.jpeg" },
+            { name: "Dunk", img: "/dunk.jpeg" },
+            { name: "Killshot", img: "/killshot.jpeg" },
+            { name: "Cortez", img: "/cortez.jpeg" },
+          ].map((item, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="bg-gray-100 rounded-lg overflow-hidden hover:shadow-lg transition">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-[280px] object-cover"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black text-white px-6 py-12 mt-12">
+        <div className="grid md:grid-cols-4 gap-6">
+          <div>
+            <h3 className="font-bold mb-4">Resources</h3>
+            <ul className="space-y-2 text-sm">
+              <li>Find a Store</li>
+              <li>Become a Member</li>
+              <li>Send Us Feedback</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4">Help</h3>
+            <ul className="space-y-2 text-sm">
+              <li>Order Status</li>
+              <li>Delivery</li>
+              <li>Returns</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4">Company</h3>
+            <ul className="space-y-2 text-sm">
+              <li>About Nike</li>
+              <li>News</li>
+              <li>Careers</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4">Social</h3>
+            <ul className="space-y-2 text-sm">
+              <li>Instagram</li>
+              <li>Twitter</li>
+              <li>Facebook</li>
+            </ul>
+          </div>
+        </div>
+        <p className="text-xs text-gray-400 mt-8">
+          © 2025 Nike x FRIDOAVANALMUZAKI
+        </p>
       </footer>
     </div>
   );
