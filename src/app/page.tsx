@@ -40,205 +40,105 @@ export default function Home() {
         </div>
 
         {/* Navbar */}
-        <nav className="flex justify-center space-x-6 font-medium w-full md:w-auto relative">
-          {/* New & Featured */}
-          <div className="group relative">
-            <a href="#" className="hover:text-gray-600">
-              New & Featured
-            </a>
-            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
-              <div className="grid grid-cols-4 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-3">Featured</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="hover:text-black cursor-pointer">
-                      New Arrivals
-                    </li>
-                    <li className="hover:text-black cursor-pointer">
-                      Bestsellers
-                    </li>
-                    <li className="hover:text-black cursor-pointer">
-                      SNKRS Launch
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Trending</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="hover:text-black cursor-pointer">
-                      Air Force 1
-                    </li>
-                    <li className="hover:text-black cursor-pointer">
-                      Air Jordan
-                    </li>
-                    <li className="hover:text-black cursor-pointer">Dunk</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Shop by Sport</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="hover:text-black cursor-pointer">Running</li>
-                    <li className="hover:text-black cursor-pointer">
-                      Basketball
-                    </li>
-                    <li className="hover:text-black cursor-pointer">
-                      Football
-                    </li>
-                  </ul>
-                </div>
-                <div></div>
-              </div>
+<nav className="flex justify-center space-x-6 font-medium w-full md:w-auto relative">
+  {[
+    {
+      title: "New & Featured",
+      columns: [
+        {
+          heading: "Featured",
+          items: ["New Arrivals", "Bestsellers", "SNKRS Launch"],
+        },
+        {
+          heading: "Trending",
+          items: ["Air Force 1", "Air Jordan", "Dunk"],
+        },
+        {
+          heading: "Shop by Sport",
+          items: ["Running", "Basketball", "Football"],
+        },
+        { heading: "", items: [] },
+      ],
+    },
+    {
+      title: "Men",
+      columns: [
+        { heading: "Shoes", items: ["All Shoes", "Lifestyle", "Running", "Basketball"] },
+        { heading: "Clothing", items: ["T-Shirts", "Hoodies", "Shorts"] },
+        { heading: "Shop by Sport", items: ["Football", "Tennis", "Golf"] },
+        { heading: "", items: [] },
+      ],
+    },
+    {
+      title: "Women",
+      columns: [
+        { heading: "Featured", items: ["New Arrivals", "Bestsellers", "Back to School"] },
+        { heading: "Clothing", items: ["Leggings", "Sports Bras", "Jackets"] },
+        { heading: "Shoes", items: ["Lifestyle", "Running", "Training"] },
+        { heading: "", items: [] },
+      ],
+    },
+    {
+      title: "Kids",
+      columns: [
+        { heading: "Featured", items: ["New Arrivals", "Back to School"] },
+        { heading: "Kids By Age", items: ["Older Kids (7 - 14)", "Younger Kids (4 - 7)", "Toddlers (0 - 4)"] },
+        { heading: "Shop by Sport", items: ["Football", "Basketball", "Running"] },
+        { heading: "", items: [] },
+      ],
+    },
+    {
+      title: "Sale",
+      columns: [
+        { heading: "Shop Deals", items: ["Men’s Sale", "Women’s Sale", "Kids’ Sale"] },
+        { heading: "Categories", items: ["Shoes", "Clothing", "Accessories"] },
+        { heading: "Special Offers", items: ["Extra 20% Off", "Clearance"] },
+        { heading: "", items: [] },
+      ],
+    },
+  ].map((menu, idx) => (
+    <div key={idx} className="group relative">
+      <a href="#" className="hover:text-gray-600">
+        {menu.title}
+      </a>
+      <div className="absolute left-0 top-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out w-[900px] bg-white shadow-xl p-8 z-50 pointer-events-none group-hover:pointer-events-auto">
+        <div className="grid grid-cols-4 gap-6">
+          {menu.columns.map((col, cIdx) => (
+            <div key={cIdx}>
+              {col.heading && <h3 className="font-semibold mb-3">{col.heading}</h3>}
+              <ul className="space-y-2 text-sm text-gray-700">
+                {col.items.map((item, iIdx) => (
+                  <li
+                    key={iIdx}
+                    className="hover:text-black cursor-pointer transition-all duration-300 ease-in-out translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  ))}
 
-          {/* Men */}
-          <div className="group relative">
-            <a href="#" className="hover:text-gray-600">
-              Men
-            </a>
-            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
-              <div className="grid grid-cols-4 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-3">Shoes</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>All Shoes</li>
-                    <li>Lifestyle</li>
-                    <li>Running</li>
-                    <li>Basketball</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Clothing</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>T-Shirts</li>
-                    <li>Hoodies</li>
-                    <li>Shorts</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Shop by Sport</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Football</li>
-                    <li>Tennis</li>
-                    <li>Golf</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+  {/* SNKRS */}
+  <a href="#" className="hover:text-gray-600">
+    SNKRS
+  </a>
+</nav>
 
-          {/* Women */}
-          <div className="group relative">
-            <a href="#" className="hover:text-gray-600">
-              Women
-            </a>
-            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
-              <div className="grid grid-cols-4 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-3">Featured</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>New Arrivals</li>
-                    <li>Bestsellers</li>
-                    <li>Back to School</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Clothing</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Leggings</li>
-                    <li>Sports Bras</li>
-                    <li>Jackets</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Shoes</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Lifestyle</li>
-                    <li>Running</li>
-                    <li>Training</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Kids */}
-          <div className="group relative">
-            <a href="#" className="hover:text-gray-600">
-              Kids
-            </a>
-            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
-              <div className="grid grid-cols-4 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-3">Featured</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>New Arrivals</li>
-                    <li>Back to School</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Kids By Age</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Older Kids (7 - 14)</li>
-                    <li>Younger Kids (4 - 7)</li>
-                    <li>Toddlers (0 - 4)</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Shop by Sport</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Football</li>
-                    <li>Basketball</li>
-                    <li>Running</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Sale */}
-          <div className="group relative">
-            <a href="#" className="hover:text-gray-600">
-              Sale
-            </a>
-            <div className="absolute left-0 top-full hidden group-hover:block w-[900px] bg-white shadow-xl p-8 z-50">
-              <div className="grid grid-cols-4 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-3">Shop Deals</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Men’s Sale</li>
-                    <li>Women’s Sale</li>
-                    <li>Kids’ Sale</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Categories</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Shoes</li>
-                    <li>Clothing</li>
-                    <li>Accessories</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">Special Offers</h3>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>Extra 20% Off</li>
-                    <li>Clearance</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* SNKRS */}
-          <a href="#" className="hover:text-gray-600">
-            SNKRS
-          </a>
-        </nav>
-
-        {/* Icons */}
+        {/* Icons + Search */}
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
-          <Search className="w-5 h-5 cursor-pointer" />
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Search"
+              className="pl-10 pr-4 py-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black text-sm"
+            />
+          </div>
           <Heart className="w-5 h-5 cursor-pointer" />
           <ShoppingBag className="w-5 h-5 cursor-pointer" />
         </div>
@@ -280,40 +180,44 @@ export default function Home() {
             </div>
           </SwiperSlide>
 
-          {/* Video 2 */}
-          <SwiperSlide>
-            <div className="relative w-full h-screen">
-              <video
-                className="w-full h-full object-cover"
-                src="/tenisnike.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                controls
-              />
-              <div className="absolute inset-0 bg-black/30"></div>
-              {/* Teks di tengah agak bawah */}
-              <div className="absolute bottom-24 left-1/2 -translate-x-1/2 text-center text-white px-4">
-                <h1 className="text-5xl md:text-6xl font-extrabold uppercase">
-                  JUST DO IT
-                </h1>
-                <p className="text-lg mt-4 max-w-xl mx-auto">
-                  Greatness Favors The Bold
-                </p>
-                <div className="flex justify-center gap-4 mt-6">
-                  <button className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200">
-                    Watch
-                  </button>
-                  <button className="bg-transparent border border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black">
-                    Gear Up
-                  </button>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      </section>
+              {/* Video 2 */}
+    <SwiperSlide>
+      <div className="relative w-full h-screen">
+        <video
+          className="w-full h-full object-cover"
+          src="/tenisnike.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls
+        />
+        <div className="absolute inset-0 bg-black/30"></div>
+
+        {/* Teks "JUST DO IT" + kalimat */}
+        <div className="absolute bottom-36 left-1/2 -translate-x-1/2 text-center text-white px-4">
+          <h1 className="text-6xl md:text-7xl font-extrabold uppercase">
+            JUST DO IT
+          </h1>
+          <p className="text-lg md:text-xl mt-4 max-w-xl mx-auto">
+            Experience a zero gravity running sensation
+          </p>
+
+          {/* Tombol */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200">
+              Watch
+            </button>
+            <button className="bg-transparent border border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black">
+              Gear Up
+            </button>
+          </div>
+        </div>
+      </div>
+    </SwiperSlide>
+  </Swiper>
+</section>
+
 
       {/* Shop by Sport */}
       <section className="px-6 py-12">
@@ -428,46 +332,75 @@ export default function Home() {
         </Swiper>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black text-white px-6 py-12 mt-12">
-        <div className="grid md:grid-cols-4 gap-6">
-          <div>
-            <h3 className="font-bold mb-4">Resources</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Find a Store</li>
-              <li>Become a Member</li>
-              <li>Send Us Feedback</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-4">Help</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Order Status</li>
-              <li>Delivery</li>
-              <li>Returns</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-4">Company</h3>
-            <ul className="space-y-2 text-sm">
-              <li>About Nike</li>
-              <li>News</li>
-              <li>Careers</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-4">Social</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Instagram</li>
-              <li>Twitter</li>
-              <li>Facebook</li>
-            </ul>
-          </div>
-        </div>
-        <p className="text-xs text-gray-400 mt-8">
-          © 2025 Nike x FRIDOAVANALMUZAKI
-        </p>
-      </footer>
+    {/* Footer */}
+<footer className="bg-white text-gray-800 px-6 py-12 border-t border-gray-200 mt-12">
+  <div className="grid md:grid-cols-5 gap-6">
+    {/* Resources */}
+    <div>
+      <h3 className="font-bold mb-4">Resources</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-black cursor-pointer">Find A Store</li>
+        <li className="hover:text-black cursor-pointer">Become A Member</li>
+        <li className="hover:text-black cursor-pointer">Running Shoe Finder</li>
+        <li className="hover:text-black cursor-pointer">Nike Coaching</li>
+        <li className="hover:text-black cursor-pointer">Education Discounts</li>
+        <li className="hover:text-black cursor-pointer">Send Us Feedback</li>
+      </ul>
+    </div>
+
+    {/* Help */}
+    <div>
+      <h3 className="font-bold mb-4">Help</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-black cursor-pointer">Get Help</li>
+        <li className="hover:text-black cursor-pointer">Order Status</li>
+        <li className="hover:text-black cursor-pointer">Delivery</li>
+        <li className="hover:text-black cursor-pointer">Returns</li>
+        <li className="hover:text-black cursor-pointer">Payment Options</li>
+        <li className="hover:text-black cursor-pointer">Contact Us</li>
+      </ul>
+    </div>
+
+    {/* Company */}
+    <div>
+      <h3 className="font-bold mb-4">Company</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-black cursor-pointer">About Nike</li>
+        <li className="hover:text-black cursor-pointer">News</li>
+        <li className="hover:text-black cursor-pointer">Careers</li>
+        <li className="hover:text-black cursor-pointer">Investors</li>
+        <li className="hover:text-black cursor-pointer">Sustainability</li>
+        <li className="hover:text-black cursor-pointer">Impact</li>
+        <li className="hover:text-black cursor-pointer">Report a Concern</li>
+      </ul>
+    </div>
+
+    {/* Guides */}
+    <div>
+      <h3 className="font-bold mb-4">Guides</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-black cursor-pointer">Terms of Sale</li>
+        <li className="hover:text-black cursor-pointer">Terms of Use</li>
+        <li className="hover:text-black cursor-pointer">Nike Privacy Policy</li>
+        <li className="hover:text-black cursor-pointer">Privacy Settings</li>
+      </ul>
+    </div>
+
+    {/* Indonesia */}
+    <div className="text-right">
+      <h3 className="font-bold mb-4">Indonesia</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-black cursor-pointer">Visit Nike Indonesia</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Copyright */}
+  <p className="text-xs text-gray-400 mt-8 text-center">
+    © 2025 Nike x Frido Avan Almuzaki
+  </p>
+</footer>
+
     </div>
   );
 }
