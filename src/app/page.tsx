@@ -12,16 +12,20 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleWatch = () => {
-  const video = videoRef.current;
-  if (!video) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-  // Coba masuk fullscreen
-  if (video.requestFullscreen) {
+    // Coba masuk fullscreen
+    if (video.requestFullscreen) {
       video.requestFullscreen();
-    } else if ('webkitRequestFullscreen' in video) {
-      (video as HTMLVideoElement & { webkitRequestFullscreen(): void }).webkitRequestFullscreen();
-    } else if ('msRequestFullscreen' in video) {
-      (video as HTMLVideoElement & { msRequestFullscreen(): void }).msRequestFullscreen();
+    } else if ("webkitRequestFullscreen" in video) {
+      (
+        video as HTMLVideoElement & { webkitRequestFullscreen(): void }
+      ).webkitRequestFullscreen();
+    } else if ("msRequestFullscreen" in video) {
+      (
+        video as HTMLVideoElement & { msRequestFullscreen(): void }
+      ).msRequestFullscreen();
     }
 
     // Play video
@@ -30,15 +34,49 @@ export default function Home() {
 
   return (
     <div className="font-sans text-gray-900">
-      {/* Logo */}
+      {/* Topbar */}
+      <div className="w-full bg-gray-100 text-xs text-gray-600 flex justify-between items-center px-6 py-2">
+        {/* Jordan Logo kiri */}
+        <div className="flex items-center">
+          <Image
+            src="/jordanlogo.jpg"
+            alt="Jordan Logo"
+            width={24}
+            height={24}
+            className="h-5 w-auto"
+          />
+        </div>
+
+        {/* Menu kanan */}
+        <div className="flex items-center space-x-4">
+          <a href="#" className="hover:text-black">
+            Find a Store
+          </a>
+          <span>|</span>
+          <a href="#" className="hover:text-black">
+            Help
+          </a>
+          <span>|</span>
+          <a href="#" className="hover:text-black">
+            Join Us
+          </a>
+          <span>|</span>
+          <a href="#" className="hover:text-black">
+            Sign In
+          </a>
+        </div>
+      </div>
+
+      {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-center px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-50">
-        <div className="flex justify-center w-full md:w-auto mb-4 md:mb-0">
+        {/* Logo Jordan + Nike */}
+        <div className="flex items-center space-x-4 w-full md:w-auto mb-4 md:mb-0">
           <Image
             src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg"
             alt="Nike Logo"
             width={100}
             height={24}
-            className="h-6"
+            className="h-6 w-auto"
           />
         </div>
 
@@ -66,36 +104,76 @@ export default function Home() {
             {
               title: "Men",
               columns: [
-                { heading: "Shoes", items: ["All Shoes", "Lifestyle", "Running", "Basketball"] },
-                { heading: "Clothing", items: ["T-Shirts", "Hoodies", "Shorts"] },
-                { heading: "Shop by Sport", items: ["Football", "Tennis", "Golf"] },
+                {
+                  heading: "Shoes",
+                  items: ["All Shoes", "Lifestyle", "Running", "Basketball"],
+                },
+                {
+                  heading: "Clothing",
+                  items: ["T-Shirts", "Hoodies", "Shorts"],
+                },
+                {
+                  heading: "Shop by Sport",
+                  items: ["Football", "Tennis", "Golf"],
+                },
                 { heading: "", items: [] },
               ],
             },
             {
               title: "Women",
               columns: [
-                { heading: "Featured", items: ["New Arrivals", "Bestsellers", "Back to School"] },
-                { heading: "Clothing", items: ["Leggings", "Sports Bras", "Jackets"] },
-                { heading: "Shoes", items: ["Lifestyle", "Running", "Training"] },
+                {
+                  heading: "Featured",
+                  items: ["New Arrivals", "Bestsellers", "Back to School"],
+                },
+                {
+                  heading: "Clothing",
+                  items: ["Leggings", "Sports Bras", "Jackets"],
+                },
+                {
+                  heading: "Shoes",
+                  items: ["Lifestyle", "Running", "Training"],
+                },
                 { heading: "", items: [] },
               ],
             },
             {
               title: "Kids",
               columns: [
-                { heading: "Featured", items: ["New Arrivals", "Back to School"] },
-                { heading: "Kids By Age", items: ["Older Kids (7 - 14)", "Younger Kids (4 - 7)", "Toddlers (0 - 4)"] },
-                { heading: "Shop by Sport", items: ["Football", "Basketball", "Running"] },
+                {
+                  heading: "Featured",
+                  items: ["New Arrivals", "Back to School"],
+                },
+                {
+                  heading: "Kids By Age",
+                  items: [
+                    "Older Kids (7 - 14)",
+                    "Younger Kids (4 - 7)",
+                    "Toddlers (0 - 4)",
+                  ],
+                },
+                {
+                  heading: "Shop by Sport",
+                  items: ["Football", "Basketball", "Running"],
+                },
                 { heading: "", items: [] },
               ],
             },
             {
               title: "Sale",
               columns: [
-                { heading: "Shop Deals", items: ["Men’s Sale", "Women’s Sale", "Kids’ Sale"] },
-                { heading: "Categories", items: ["Shoes", "Clothing", "Accessories"] },
-                { heading: "Special Offers", items: ["Extra 20% Off", "Clearance"] },
+                {
+                  heading: "Shop Deals",
+                  items: ["Men’s Sale", "Women’s Sale", "Kids’ Sale"],
+                },
+                {
+                  heading: "Categories",
+                  items: ["Shoes", "Clothing", "Accessories"],
+                },
+                {
+                  heading: "Special Offers",
+                  items: ["Extra 20% Off", "Clearance"],
+                },
                 { heading: "", items: [] },
               ],
             },
@@ -108,7 +186,9 @@ export default function Home() {
                 <div className="grid grid-cols-4 gap-6">
                   {menu.columns.map((col, cIdx) => (
                     <div key={cIdx}>
-                      {col.heading && <h3 className="font-semibold mb-3">{col.heading}</h3>}
+                      {col.heading && (
+                        <h3 className="font-semibold mb-3">{col.heading}</h3>
+                      )}
                       <ul className="space-y-2 text-sm text-gray-700">
                         {col.items.map((item, iIdx) => (
                           <li
@@ -125,8 +205,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-
-          {/* SNKRS */}
           <a href="#" className="hover:text-gray-600">
             SNKRS
           </a>
@@ -146,6 +224,17 @@ export default function Home() {
           <ShoppingBag className="w-5 h-5 cursor-pointer" />
         </div>
       </header>
+
+      {/* Promo Bar */}
+      <div className="w-full bg-white text-black text-sm border-b border-gray-200 py-2 text-center">
+        <p>
+          New Members Enjoy <span className="font-semibold">15% Off</span> On
+          The Nike App. Use: <span className="font-semibold">APP15</span>{" "}
+          <a href="#" className="underline hover:text-black">
+            Download Now
+          </a>
+        </p>
+      </div>
 
       {/* Video Slider Section */}
       <section className="w-full h-screen relative">
@@ -198,12 +287,12 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-black/30"></div>
               <div className="absolute bottom-36 left-1/2 -translate-x-1/2 text-center text-white px-4">
-                <h1 className="text-6xl md:text-7xl font-extrabold uppercase">
-                  JUST DO IT
+                <h2 className="text-sm text-white mb-2">
+                  The you that knows you can is 26.2 miles away.
+                </h2>
+                <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
+                  JUST DO IT.
                 </h1>
-                <p className="text-lg md:text-xl mt-4 max-w-xl mx-auto">
-                  Experience a zero gravity running sensation
-                </p>
                 <div className="flex justify-center gap-4 mt-6">
                   <button
                     onClick={handleWatch}
@@ -233,7 +322,10 @@ export default function Home() {
             { name: "Golf", img: "/nikegolf.jpeg" },
             { name: "Skateboarding", img: "/nikeskateboard.jpeg" },
           ].map((item, idx) => (
-            <div key={idx} className="flex-shrink-0 w-[300px] overflow-hidden group">
+            <div
+              key={idx}
+              className="flex-shrink-0 w-[300px] overflow-hidden group"
+            >
               <Image
                 src={item.img}
                 alt={item.name}
@@ -241,7 +333,9 @@ export default function Home() {
                 height={500}
                 className="w-full h-[500px] object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
               />
-              <p className="mt-3 text-center font-semibold text-lg">{item.name}</p>
+              <p className="mt-3 text-center font-semibold text-lg">
+                {item.name}
+              </p>
             </div>
           ))}
         </div>
@@ -252,10 +346,26 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-6">Featured</h2>
         <div className="grid md:grid-cols-2 gap-0">
           {[
-            { title: "Built to Move Different", subtitle: "", img: "/mafianike.jpeg" },
-            { title: "Coming Soon: Shox Z", subtitle: "Not Here to be liked", img: "/hitamputihshoes.jpeg" },
-            { title: "Air Jordan: Dusty Rose", subtitle: "Never Been Done Is What We Do", img: "/pinkshoes.jpeg" },
-            { title: "30 Sep - 02 Oct", subtitle: "3 Days of Drops", img: "/trisepatu.jpeg" },
+            {
+              title: "Built to Move Different",
+              subtitle: "",
+              img: "/mafianike.jpeg",
+            },
+            {
+              title: "Coming Soon: Shox Z",
+              subtitle: "Not Here to be liked",
+              img: "/hitamputihshoes.jpeg",
+            },
+            {
+              title: "Air Jordan: Dusty Rose",
+              subtitle: "Never Been Done Is What We Do",
+              img: "/pinkshoes.jpeg",
+            },
+            {
+              title: "30 Sep - 02 Oct",
+              subtitle: "3 Days of Drops",
+              img: "/trisepatu.jpeg",
+            },
           ].map((item, idx) => (
             <div key={idx} className="relative">
               <Image
@@ -287,7 +397,10 @@ export default function Home() {
           loop={true}
           spaceBetween={20}
           slidesPerView={2}
-          breakpoints={{ 640: { slidesPerView: 3 }, 1024: { slidesPerView: 5 } }}
+          breakpoints={{
+            640: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
           className="pb-10"
         >
           {[
@@ -324,11 +437,19 @@ export default function Home() {
             <h3 className="font-bold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li className="hover:text-black cursor-pointer">Find A Store</li>
-              <li className="hover:text-black cursor-pointer">Become A Member</li>
-              <li className="hover:text-black cursor-pointer">Running Shoe Finder</li>
+              <li className="hover:text-black cursor-pointer">
+                Become A Member
+              </li>
+              <li className="hover:text-black cursor-pointer">
+                Running Shoe Finder
+              </li>
               <li className="hover:text-black cursor-pointer">Nike Coaching</li>
-              <li className="hover:text-black cursor-pointer">Education Discounts</li>
-              <li className="hover:text-black cursor-pointer">Send Us Feedback</li>
+              <li className="hover:text-black cursor-pointer">
+                Education Discounts
+              </li>
+              <li className="hover:text-black cursor-pointer">
+                Send Us Feedback
+              </li>
             </ul>
           </div>
 
@@ -340,7 +461,9 @@ export default function Home() {
               <li className="hover:text-black cursor-pointer">Order Status</li>
               <li className="hover:text-black cursor-pointer">Delivery</li>
               <li className="hover:text-black cursor-pointer">Returns</li>
-              <li className="hover:text-black cursor-pointer">Payment Options</li>
+              <li className="hover:text-black cursor-pointer">
+                Payment Options
+              </li>
               <li className="hover:text-black cursor-pointer">Contact Us</li>
             </ul>
           </div>
@@ -353,9 +476,13 @@ export default function Home() {
               <li className="hover:text-black cursor-pointer">News</li>
               <li className="hover:text-black cursor-pointer">Careers</li>
               <li className="hover:text-black cursor-pointer">Investors</li>
-              <li className="hover:text-black cursor-pointer">Sustainability</li>
+              <li className="hover:text-black cursor-pointer">
+                Sustainability
+              </li>
               <li className="hover:text-black cursor-pointer">Impact</li>
-              <li className="hover:text-black cursor-pointer">Report a Concern</li>
+              <li className="hover:text-black cursor-pointer">
+                Report a Concern
+              </li>
             </ul>
           </div>
 
@@ -365,8 +492,12 @@ export default function Home() {
             <ul className="space-y-2 text-sm">
               <li className="hover:text-black cursor-pointer">Terms of Sale</li>
               <li className="hover:text-black cursor-pointer">Terms of Use</li>
-              <li className="hover:text-black cursor-pointer">Nike Privacy Policy</li>
-              <li className="hover:text-black cursor-pointer">Privacy Settings</li>
+              <li className="hover:text-black cursor-pointer">
+                Nike Privacy Policy
+              </li>
+              <li className="hover:text-black cursor-pointer">
+                Privacy Settings
+              </li>
             </ul>
           </div>
 
@@ -374,7 +505,9 @@ export default function Home() {
           <div className="text-right">
             <h3 className="font-bold mb-4">Indonesia</h3>
             <ul className="space-y-2 text-sm">
-              <li className="hover:text-black cursor-pointer">Visit Nike Indonesia</li>
+              <li className="hover:text-black cursor-pointer">
+                Visit Nike Indonesia
+              </li>
             </ul>
           </div>
         </div>
