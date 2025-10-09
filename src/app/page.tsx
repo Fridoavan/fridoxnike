@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <div className="font-sans text-gray-900">
+    <div className="font-sans text-gray-900 overflow-x-hidden">
       {/* Topbar */}
       <div className="w-full bg-gray-100 text-xs text-gray-600 flex justify-between items-center px-6 py-2">
         {/* Jordan Logo kiri */}
@@ -182,7 +182,7 @@ export default function Home() {
               <a href="#" className="hover:text-gray-600">
                 {menu.title}
               </a>
-              <div className="absolute left-0 top-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out w-[900px] bg-white shadow-xl p-8 z-50 pointer-events-none group-hover:pointer-events-auto">
+              <div className="absolute left-0 top-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out max-w-[900px] bg-white shadow-xl p-8 z-50 pointer-events-none group-hover:pointer-events-auto">
                 <div className="grid grid-cols-4 gap-6">
                   {menu.columns.map((col, cIdx) => (
                     <div key={cIdx}>
